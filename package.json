@@ -14,7 +14,7 @@
     "eslint-config-prettier": "^9.0.0",
     "prettier": "^3.0.3",
     "prettier-eslint": "^15.0.1",
-    "vite": "^4.0.4"
+    "vite": "^4.4.11"
   },
   "dependencies": {
     "ol": "latest"
