@@ -39,29 +39,18 @@ const f = async () => {
   });
 
   // can we avoid CORS-policy ?
-  const localUrf = new URL(
-    "./assets/EMIT_L2B_CH4PLM_001_20230825T170609_001111_nomask.tif",
-    import.meta.url,
-  ).href;
-  const methaneSource = new GeoTIFF({
-    normalize: false,
-    sources: [
-      {
-        url: localUrf,
-      },
-    ],
-  });
-
-  const localUrf2 = new URL("./assets/image_export_nn.tif", import.meta.url)
-    .href;
-  const nnSorce = new GeoTIFF({
-    // crossOrigin: "no-cors",
-    sources: [
-      {
-        url: localUrf2,
-      },
-    ],
-  });
+  // const localUrf = new URL(
+  //   "./assets/EMIT_L2B_CH4PLM_001_20230825T170609_001111_nomask.tif",
+  //   import.meta.url,
+  // ).href;
+  // const methaneSource = new GeoTIFF({
+  //   normalize: false,
+  //   sources: [
+  //     {
+  //       url: localUrf,
+  //     },
+  //   ],
+  // });
 
   const localUrf3 = new URL(
     "./assets/EMIT_L2B_CH4ENH_001_20230825T170609_2323711_011_nomask.tif",
@@ -76,8 +65,6 @@ const f = async () => {
       },
     ],
   });
-
-  console.log(methaneSource);
 
   const max = 4040.8093;
   const min = -2853.458;
@@ -94,15 +81,30 @@ const f = async () => {
     },
   });
 
+
+  const localUrf2 = new URL("./assets/image_export_cls2.tif", import.meta.url)
+    .href;
+  const nnSorce = new GeoTIFF({
+    sources: [
+      {
+        url: localUrf2,
+      },
+    ],
+  });
+
   const segmentLayer = new TileLayerWebGL({
+    opacity: 0.2,
     source: nnSorce,
   });
+
+  // const correlationLayer = new TileLayerWebGL({
+
+  // })
 
   const map = new Map({
     target: "map",
     layers: [baseLayer, methaneLayer, segmentLayer],
     view: new View({
-      // projection: "EPSG:4326",
       projection: "EPSG:4326",
       center: [-96.7540782, 32.5460988],
       zoom: 10,
@@ -112,16 +114,19 @@ const f = async () => {
   const showBase = document.getElementById("showBase");
   const showMethane = document.getElementById("showMethane");
   const showSegment = document.getElementById("showSegment");
+  const showCorrelation = document.getElementById("Correlation");
 
   const hook = () => {
     baseLayer.setVisible(showBase.checked);
     methaneLayer.setVisible(showMethane.checked);
     segmentLayer.setVisible(showSegment.checked);
+    // segmentLayer.setVisible(showSegment.checked);
   };
 
   showBase.addEventListener("change", hook);
   showMethane.addEventListener("change", hook);
   showSegment.addEventListener("change", hook);
+  showCorrelation.addEventListener("change", hook);
 };
 
 f();
