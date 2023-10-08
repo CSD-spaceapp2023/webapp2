@@ -2,5 +2,5 @@ export default {
   build: {
     sourcemap: true,
   },
-  root: './src'
-}
+  root: "./src",
+};
