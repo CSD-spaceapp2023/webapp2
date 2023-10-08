@@ -16,4 +16,5 @@ https://csd-spaceapp2023.github.io/webapp2/
 
 ## Links
 
-Machine Learning repo: TBD
+* Machine Learning repo: TBD
+* Presentation: TBD
