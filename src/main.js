@@ -26,13 +26,19 @@ const f = async () => {
     }),
   });
 
-  const geoTiffLayer = new TileLayerWebGL({
-    id: `geoTiffs`,
-    zIndex: 3,
+  const url4 = new URL(
+    "./assets/image_export_cls_naip.tif",
+    import.meta.url,
+  ).href;
+
+  const layer4 = new TileLayerWebGL({
+    style: {
+      brightness: -0.3
+    },
     source: new GeoTIFF({
       sources: [
         {
-          url: "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/21/H/UB/2021/9/S2B_21HUB_20210915_0_L2A/TCI.tif",
+          url: url4,
         },
       ],
     }),
@@ -93,7 +99,7 @@ const f = async () => {
   });
 
   const segmentLayer = new TileLayerWebGL({
-    opacity: 0.2,
+    opacity: 0.25,
     source: nnSorce,
   });
 
@@ -103,30 +109,30 @@ const f = async () => {
 
   const map = new Map({
     target: "map",
-    layers: [baseLayer, methaneLayer, segmentLayer],
+    layers: [baseLayer, layer4, methaneLayer, segmentLayer],
     view: new View({
       projection: "EPSG:4326",
       center: [-96.7540782, 32.5460988],
-      zoom: 10,
+      zoom: 13,
     }),
   });
 
   const showBase = document.getElementById("showBase");
   const showMethane = document.getElementById("showMethane");
   const showSegment = document.getElementById("showSegment");
-  const showCorrelation = document.getElementById("Correlation");
+  const showHighResImage = document.getElementById("showHighResImage");
 
   const hook = () => {
     baseLayer.setVisible(showBase.checked);
     methaneLayer.setVisible(showMethane.checked);
     segmentLayer.setVisible(showSegment.checked);
-    // segmentLayer.setVisible(showSegment.checked);
+    layer4.setVisible(showHighResImage.checked);
   };
 
   showBase.addEventListener("change", hook);
   showMethane.addEventListener("change", hook);
   showSegment.addEventListener("change", hook);
-  showCorrelation.addEventListener("change", hook);
+  showHighResImage.addEventListener("change", hook);
 };
 
 f();
