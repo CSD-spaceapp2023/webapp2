@@ -16,5 +16,5 @@ https://csd-spaceapp2023.github.io/webapp2/
 
 ## Links
 
-* Machine Learning repo: TBD
+* Machine Learning resources: https://github.com/CSD-spaceapp2023/environments
 * Presentation: TBD
