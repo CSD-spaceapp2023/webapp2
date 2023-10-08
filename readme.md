@@ -1,18 +1,19 @@
-# OpenLayers + Vite
+# Team CSD: Internatinal Space App Challenge 2023: 
 
-This example demonstrates how the `ol` package can be used with [Vite](https://vitejs.dev/).
+## Challenge
 
-To get started, run the following (requires Node 14+):
+EMIT The Future
 
-    npx create-ol-app my-app --template vite
+## Teams members
 
-Then change into your new `my-app` directory and start a development server (available at http://localhost:5173):
+* Praneet.J
+* Koji.I
+* Liu.L
 
-    cd my-app
-    npm start
+## Webapp demo
 
-To generate a build ready for production:
+https://csd-spaceapp2023.github.io/webapp2/
 
-    npm run build
+## Links
 
-Then deploy the contents of the `dist` directory to your server. You can also run `npm run serve` to serve the results of the `dist` directory for preview.
+Machine Learning repo: TBD
