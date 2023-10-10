@@ -107,14 +107,16 @@ const f = async () => {
 
   // })
 
+  const myview = new View({
+    projection: "EPSG:4326",
+    center: [-96.7540782, 32.5460988],
+    zoom: 4,
+  });
+
   const map = new Map({
     target: "map",
     layers: [baseLayer, layer4, methaneLayer, segmentLayer],
-    view: new View({
-      projection: "EPSG:4326",
-      center: [-96.7540782, 32.5460988],
-      zoom: 13,
-    }),
+    view: myview
   });
 
   const showBase = document.getElementById("showBase");
@@ -133,6 +135,20 @@ const f = async () => {
   showMethane.addEventListener("change", hook);
   showSegment.addEventListener("change", hook);
   showHighResImage.addEventListener("change", hook);
+
+  const zoomto = () => {
+    console.log("hey")
+    myview.setCenter([-96.7540782, 32.5460988])
+    myview.setZoom(10)
+  }
+
+  const hookevent = document.getElementById("zoomto");
+  hookevent.addEventListener(
+    "click", zoomto
+  )
+
 };
 
 f();
+
+
